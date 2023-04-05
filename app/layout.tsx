@@ -8,6 +8,7 @@ import theme from "./theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import Loading from "./loading";
+import { RecoilRoot } from "recoil";
 
 export default function RootLayout({
   children,
@@ -17,16 +18,18 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <body>
-          <Header />
-          <Suspense fallback={<Loading />}>
-            <main>{children}</main>
-          </Suspense>
-          <Footer />
-        </body>
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <body>
+            <Header />
+            <Suspense fallback={<Loading />}>
+              <main>{children}</main>
+            </Suspense>
+            <Footer />
+          </body>
+        </ThemeProvider>
+      </RecoilRoot>
     </html>
   );
 }
